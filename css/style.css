@@ -17,8 +17,8 @@
 .pipe {
     position: absolute;
     bottom: 0;
-    width: 60px;
-    animation: pipe-animation 1.5s infinite linear;
+    width: 200px;
+    right: 50%;
 }
 
 @keyframes pipe-animation {
@@ -30,11 +30,50 @@
     }
 }
 
+.explosion {
+    position: absolute;
+    width: 300px;
+    pointer-events: none;
+    z-index: 200;
+    bottom: 0;
+    display: flex;
+}
+
+
 .mario {
-    width: 100px;
     position: absolute;
     bottom: 0;
+    width: 100px;
+    height: 100px;
+    z-index: 1;
+
+    background-image: url("../images/mario.gif");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: bottom left;
 }
+
+.mario::after {
+    content: "";
+    position: absolute;
+    width: 120px;
+    height: 140px;
+    background-image: url(../images/ak477.gif);
+    background-size: contain;
+    background-repeat: no-repeat;
+    top: 7px;
+    left: 40px;
+    z-index: 10;
+    pointer-events: none;
+}
+
+.bullet {
+    position: absolute;
+    width: 100px;
+    pointer-events: none;
+    z-index: 20;
+}
+
 
 .jump {
     animation: jump 500ms ease-out;
@@ -87,16 +126,44 @@
     width: 500px;
     border-radius: 20px;
     background-color: white;
-    animation-name: fade-in ;
+    animation-name: fade-in;
     animation-duration: 1s;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    border: black 1px solid;
 }
 
-.restart-button{
+.restart-button {
     width: 80%;
     background: linear-gradient(green, white, green);
-    padding-bottom: 30px;
+    margin-bottom: 18px;
+    border-radius: 25px;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    padding: 15px;
+    cursor: pointer;
+}
+
+.credit-button {
+    width: 80%;
+    background: linear-gradient(green, white, green);
+    margin-bottom: 18px;
+    border-radius: 25px;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    padding: 15px;
+    cursor: pointer;
+}
+
+.guns {
+    display: inline-flex;        /* coloca um do lado do outro */
+}
+
+.guns .gif {
+    display: block;             /* tira espaço embaixo do img */
+    margin: 0;                  /* garante que não tem espaço entre eles */
 }
