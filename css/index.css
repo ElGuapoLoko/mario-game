@@ -1,0 +1,139 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Press Start 2P", system-ui, sans-serif;
+    background: linear-gradient(#7ec0ff, #cbeeff);
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    overflow: hidden;
+}
+
+.menu-wrapper {
+    position: relative;
+    width: 900px;
+    height: 450px;
+    border: 6px solid #fff;
+    border-radius: 16px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.7);
+    overflow: hidden;
+    background: linear-gradient(#7ec0ff, #cbeeff);
+}
+
+.ground {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 60px;
+    background: #1e8b1e;
+}
+
+.title-container {
+    position: absolute;
+    top: 40px;
+    width: 100%;
+    text-align: center;
+}
+
+.game-title {
+    font-size: 32px;
+    color: #ffe600;
+    text-shadow: 4px 4px 0 #000;
+    margin-bottom: 8px;
+}
+
+.game-subtitle {
+    font-size: 14px;
+    color: #fff;
+    text-shadow: 2px 2px 0 #000;
+}
+
+.mario-preview {
+    position: absolute;
+    bottom: 60px;
+    left: 80px;
+}
+
+.mario-preview img {
+    width: 120px;
+    image-rendering: pixelated;
+}
+
+.menu-options {
+    position: absolute;
+    bottom: 90px;
+    right: 80px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    text-align: left;
+}
+
+.start-button {
+    padding: 12px 28px;
+    border-radius: 10px;
+    border: 3px solid #fff;
+    background: #ff5200;
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+    text-shadow: 2px 2px 0 #000;
+    box-shadow: 0 4px 0 #b73400;
+    animation: start-blink 1s infinite alternate;
+}
+
+.start-button:active {
+    transform: translateY(2px);
+    box-shadow: 0 2px 0 #b73400;
+}
+
+.menu-item {
+    font-size: 12px;
+    text-shadow: 1px 1px 0 #000;
+}
+
+.menu-footer {
+    position: absolute;
+    bottom: 10px;
+    width: 100%;
+    text-align: center;
+    font-size: 10px;
+    text-shadow: 1px 1px 0 #000;
+}
+
+/* Nuvens */
+.cloud {
+    position: absolute;
+    top: 40px;
+    width: 160px;
+    opacity: 0.9;
+    animation: cloud-move 25s linear infinite;
+}
+
+.cloud-1 {
+    left: -160px;
+    animation-delay: 0s;
+}
+
+.cloud-2 {
+    left: -260px;
+    top: 90px;
+    animation-delay: 8s;
+}
+
+@keyframes cloud-move {
+    from { transform: translateX(0); }
+    to   { transform: translateX(1100px); }
+}
+
+@keyframes start-blink {
+    from { opacity: 1; transform: scale(1); }
+    to   { opacity: 0.6; transform: scale(1.05); }
+}

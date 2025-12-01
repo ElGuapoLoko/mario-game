@@ -115,18 +115,17 @@ function shoot() {
                 const monsterRect = monster.getBoundingClientRect();
                 const gameBoardRect = gameBoard.getBoundingClientRect();
 
-                const explosionX = monsterRect.left - gameBoardRect.left;
-                const explosionY = monsterRect.top  - gameBoardRect.top;
+                const centerX = (monsterRect.left - gameBoardRect.left) + monsterRect.width / 2;
+                const centerY = (monsterRect.top - gameBoardRect.top) + monsterRect.height / 2;
 
-                createExplosion(explosionX, explosionY);
+                createExplosion(centerX, centerY);
 
-                monster.style.display = 'none';
-
-                setTimeout(() => {
-                    monster.remove();
-                }, 500);
-
+                monster.remove();
                 bullet.remove();
+
+                score += 10;
+                scoreEl.textContent = score;
+
                 return;
             }
         });
@@ -147,8 +146,10 @@ function createExplosion(centerX, centerY) {
     explosion.src = 'images/boom-explosion.gif'; // seu gif
     explosion.classList.add('explosion');
 
+    console.log(centerY)
+
     explosion.style.left = centerX + 'px';
-    explosion.style.top  = centerY + 'px';
+    explosion.style.top  = (centerY - 200 ) + 'px';
 
     gameBoard.appendChild(explosion);
 
@@ -157,52 +158,98 @@ function createExplosion(centerX, centerY) {
     }, 1500);
 }
 
-
-
-
-// ======================= LOOP DE COLISÃO COM O CANO =======================
-
-const loop = setInterval(() => {
-    const pipePosition = pipe.offsetLeft;
-    const cloudsPosition = clouds.offsetLeft;
-    const marioPosition = window.getComputedStyle(mario).bottom.replace('px', '');
-
-    if (pipePosition <= 60 && pipePosition > 0 && marioPosition < 100) {
-        pipe.style.animation = 'none';
-        pipe.style.left = `${pipePosition}px`;
-
-        clouds.style.animation = 'none';
-        clouds.style.left = `${cloudsPosition}px`;
-
-        mario.style.animation = 'none';
-        mario.style.bottom = `${marioPosition}px`;
-
-        mario.src = 'images/game-over.png';
-        mario.style.width = '60px';
-        mario.style.marginLeft = '40px';
-
-        restart.style.display = 'inline-flex';
-
-        clearInterval(loop);
-    }
-}, 10);
-
-// ======================= MONSTROS =======================
-
 const Monsters = [
-    { 'src': 'images/monsters/boss1.gif', 'type': 'air' },
-    { 'src': 'images/monsters/bowser-dancing.gif', 'type': 'air' },
-    { 'src': 'images/monsters/bowser-mario-reading.gif', 'type': 'air' },
-    { 'src': 'images/monsters/bowser-walking.gif', 'type': 'air' },
-    { 'src': 'images/monsters/flower.gif', 'type': 'air' },
-    { 'src': 'images/monsters/goomba.gif', 'type': 'air' },
-    { 'src': 'images/monsters/midbus.gif', 'type': 'air' },
-    { 'src': 'images/monsters/piranha-plant.gif', 'type': 'air' },
-    { 'src': 'images/monsters/piranha-plant-super-smash.gif', 'type': 'air' },
-    { 'src': 'images/monsters/pokey.gif', 'type': 'air' },
-    { 'src': 'images/monsters/red-shell.gif', 'type': 'air' },
-    { 'src': 'images/monsters/shock.gif', 'type': 'air' },
-    { 'src': 'images/monsters/turtle.gif', 'type': 'air' },
-    { 'src': 'images/monsters/turtle-flying.gif', 'type': 'air' },
-    { 'src': 'images/monsters/wiggler.gif', 'type': 'air' }
+    { src: 'images/monsters/boss1.gif', type: 'air' },
+    { src: 'images/monsters/bowser-dancing.gif', type: 'air' },
+    { src: 'images/monsters/bowser-mario-reading.gif', type: 'air' },
+    { src: 'images/monsters/bowser-walking.gif', type: 'air' },
+    { src: 'images/monsters/flower.gif', type: 'air' },
+    { src: 'images/monsters/goomba.gif', type: 'air' },
+    { src: 'images/monsters/piranha-plant.gif', type: 'air' },
+    { src: 'images/monsters/piranha-plant-super-smash.gif', type: 'air' },
+    { src: 'images/monsters/red-shell.gif', type: 'air' },
+    { src: 'images/monsters/shock.gif', type: 'air' },
+    { src: 'images/monsters/turtle.gif', type: 'air' },
+    { src: 'images/monsters/turtle-flying.gif', type: 'air' },
+    { src: 'images/monsters/wiggler.gif', type: 'air' },
 ];
+
+let score = 0;
+let canTakeDamage = true;
+const scoreEl = document.querySelector('.score');
+
+function spawnMonster() {
+    const monsterData = Monsters[Math.floor(Math.random() * Monsters.length)];
+    const monster = document.createElement('img');
+
+    monster.src = monsterData.src;
+    monster.classList.add('monster');
+
+    // posição X aleatória dentro do mapa
+    const gameBoardWidth = gameBoard.offsetWidth;
+    const randomX = Math.random() * (gameBoardWidth - 60);
+
+    monster.style.left = randomX + 'px';
+    monster.style.top = '-80px';
+
+    gameBoard.appendChild(monster);
+
+    let monsterY = -80;
+    const fallSpeed = 2 + Math.random() * 3;
+
+    function fall() {
+        monsterY += fallSpeed;
+        monster.style.top = monsterY + 'px';
+
+        // se cair até o chão, remove
+        if (monsterY > gameBoard.offsetHeight - 90) {
+            // monster.remove();
+            return;
+        }
+        requestAnimationFrame(fall);
+    }
+
+    fall();
+}
+
+monsterInterval = setInterval(() => {
+    spawnMonster();
+}, 1200);
+
+function checkMonsterMarioCollision() {
+    const marioRect = mario.getBoundingClientRect();
+
+    document.querySelectorAll('.monster').forEach(monster => {
+        const monsterRect = monster.getBoundingClientRect();
+
+        const hit =
+            marioRect.left   < monsterRect.right &&
+            marioRect.right  > monsterRect.left &&
+            marioRect.top    < monsterRect.bottom &&
+            marioRect.bottom > monsterRect.top;
+
+        if (hit && canTakeDamage) {
+            canTakeDamage = false;
+
+            score -= 20;
+            if (score < 0) score = 0;
+            scoreEl.textContent = score;
+
+            // ✅ cria explosão no monstro (opcional)
+            const gameBoardRect = gameBoard.getBoundingClientRect();
+            const centerX = (monsterRect.left - gameBoardRect.left) + monsterRect.width / 2;
+            const centerY = (monsterRect.top  - gameBoardRect.top)  + monsterRect.height / 2;
+
+            createExplosion(centerX, centerY);
+
+            // ✅ remove o monstro após acertar o Mario
+            monster.remove();
+
+            // ✅ pequeno tempo de invencibilidade (anti spam)
+            setTimeout(() => {
+                canTakeDamage = true;
+            }, 800); // 0.8s sem tomar dano
+        }
+    });
+}
+

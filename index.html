@@ -2,26 +2,44 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <title>Mario</title>
-    <link rel="stylesheet" href="css/style.css"/>
+    <title>Super Mario Gun</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="css/index.css">
 </head>
 <body>
 
-<div class="game-board">
-    <div class="score">0</div>
+<div class="menu-wrapper">
+    <img src="images/clouds.png" class="cloud cloud-1">
+    <img src="images/clouds.png" class="cloud cloud-2">
 
-    <img src="images/clouds.png" class="clouds">
-    <div class="mario"></div>
-    <img src="images/monsters/boss1.gif" class="pipe monster">
+    <div class="title-container">
+        <h1 class="game-title">SUPER MARIO PCC</h1>
+        <p class="game-subtitle">PRESS START</p>
+    </div>
 
-    <div class="restart">
-        <div class="restart-content">
-            <span class="restart-button">Reiniciar</span>
-            <span class="credit-button">Créditos</span>
-        </div>
+    <div class="mario-preview">
+        <img src="images/mario.gif" alt="Mario">
+    </div>
+
+    <div class="menu-options">
+        <button class="start-button" id="startGame">START</button>
+
+        <div class="menu-item">← → ANDAR</div>
+        <div class="menu-item">↑ PULAR</div>
+        <div class="menu-item">ESPAÇO - ATIRAR</div>
+    </div>
+
+    <div class="ground"></div>
+
+    <div class="menu-footer">
+        © 2025 - PCC CORP
     </div>
 </div>
 
-<script src="js/script.js"></script>
+<script src="./js/index.js"></script>
 </body>
 </html>
