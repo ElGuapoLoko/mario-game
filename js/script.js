@@ -39,15 +39,15 @@ document.addEventListener('keydown', (e) => {
     if (e.key === 'ArrowUp') {
         jump();
     }
-
-    if (e.code === 'Space') {
-        shoot();
-    }
 });
 
 document.addEventListener('keyup', (e) => {
     if (e.key === 'ArrowRight') keys.right = false;
     if (e.key === 'ArrowLeft') keys.left = false;
+
+    if (e.code === 'Space') {
+        shoot();
+    }
 });
 
 
