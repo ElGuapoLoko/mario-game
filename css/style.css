@@ -153,7 +153,7 @@
     border: black 1px solid;
 }
 
-.restart-button {
+.restartButton {
     width: 80%;
     background: linear-gradient(green, white, green);
     margin-bottom: 18px;
@@ -165,7 +165,7 @@
     cursor: pointer;
 }
 
-.credit-button {
+.exitButton {
     width: 80%;
     background: linear-gradient(green, white, green);
     margin-bottom: 18px;
@@ -178,10 +178,28 @@
 }
 
 .guns {
-    display: inline-flex;        /* coloca um do lado do outro */
+    display: inline-flex;
 }
 
 .guns .gif {
-    display: block;             /* tira espaço embaixo do img */
-    margin: 0;                  /* garante que não tem espaço entre eles */
+    display: block;
+    margin: 0;
 }
+
+.health {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 50px;
+    color: red;
+    text-shadow: 2px 2px 0 black;
+    z-index: 200;
+}
+
+.enemy-bullet {
+    position: absolute;
+    width: 80px;
+    z-index: 90;
+    pointer-events: none;
+}
+
