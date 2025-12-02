@@ -130,52 +130,6 @@
     }
 }
 
-.restart {
-    z-index: 99999;
-    display: none;
-    width: 100%;
-    height: 100%;
-    justify-content: center;
-    align-items: center;
-}
-
-.restart-content {
-    height: 300px;
-    width: 500px;
-    border-radius: 20px;
-    background-color: white;
-    animation-name: fade-in;
-    animation-duration: 1s;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    border: black 1px solid;
-}
-
-.restartButton {
-    width: 80%;
-    background: linear-gradient(green, white, green);
-    margin-bottom: 18px;
-    border-radius: 25px;
-    display: flex;
-    justify-content: center;
-    text-align: center;
-    padding: 15px;
-    cursor: pointer;
-}
-
-.exitButton {
-    width: 80%;
-    background: linear-gradient(green, white, green);
-    margin-bottom: 18px;
-    border-radius: 25px;
-    display: flex;
-    justify-content: center;
-    text-align: center;
-    padding: 15px;
-    cursor: pointer;
-}
 
 .guns {
     display: inline-flex;
@@ -202,4 +156,106 @@
     z-index: 90;
     pointer-events: none;
 }
+
+/* ================= GAME OVER MENU ================= */
+
+.gameover-screen {
+    position: fixed;
+    inset: 0;
+    background: linear-gradient(#7ec0ff, #cbeeff);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+.gameover-screen.hidden {
+    display: none;
+}
+
+.gameover-wrapper {
+    position: relative;
+    width: 900px;
+    height: 450px;
+    border: 6px solid #fff;
+    border-radius: 16px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.7);
+    overflow: hidden;
+    background: linear-gradient(#7ec0ff, #cbeeff);
+}
+
+.gameover-title {
+    font-size: 80px;
+    color: #ff4040;
+    text-shadow: 4px 4px 0 #000;
+    display: flex;
+    justify-content: center;
+    margin-top: 3rem;
+}
+
+.gameover-options {
+    position: absolute;
+    top: 180px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.gameover-button {
+    width: 260px;
+    padding: 14px 28px;
+    border-radius: 12px;
+    border: 3px solid #fff;
+    background: #ff5200;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    text-shadow: 2px 2px 0 #000;
+    box-shadow: 0 4px 0 #b73400;
+    animation: blink 1s infinite alternate;
+}
+
+.gameover-button:active {
+    transform: translateY(2px);
+    box-shadow: 0 2px 0 #b73400;
+}
+
+.cloud {
+    position: absolute;
+    top: 40px;
+    width: 160px;
+    opacity: 0.9;
+    animation: cloud-move 25s linear infinite;
+}
+
+.cloud-1 {
+    left: -160px;
+}
+
+.cloud-2 {
+    left: -260px;
+    top: 90px;
+    animation-delay: 8s;
+}
+
+.ground {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 60px;
+    background: #1e8b1e;
+}
+
+@keyframes cloud-move {
+    from { transform: translateX(0); }
+    to   { transform: translateX(1100px); }
+}
+
+@keyframes blink {
+    from { opacity: 1; transform: scale(1); }
+    to   { opacity: 0.6; transform: scale(1.05); }
+}
+
 

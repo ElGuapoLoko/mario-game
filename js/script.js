@@ -1,6 +1,6 @@
 const mario = document.querySelector('.mario');
-const restart = document.querySelector('.restart');
 const gameBoard = document.querySelector('.game-board');
+const gameoverScreen = document.querySelector('.gameover-screen');
 
 let jumping = false;
 
@@ -253,8 +253,7 @@ function damageMario(amount) {
 function endgame() {
     clearInterval(monsterSpawnTimeout)
     clearInterval(enemyShootInterval);
-
-    restart.style.display = 'inline-flex';
+    gameoverScreen.classList.remove('hidden');
 }
 
 

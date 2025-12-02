@@ -14,10 +14,22 @@
     <img src="images/clouds.png" class="clouds">
     <div class="mario"></div>
 
-    <div class="restart">
-        <div class="restart-content">
-            <span class="restartButton">Reiniciar</span>
-            <span class="exitButton">Sair</span>
+    <div class="gameover-screen hidden">
+        <div class="gameover-wrapper">
+
+            <img src="images/clouds.png" class="cloud cloud-1">
+            <img src="images/clouds.png" class="cloud cloud-2">
+
+            <div class="title-container">
+                <h1 class="gameover-title">GAME OVER</h1>
+            </div>
+
+            <div class="gameover-options">
+                <button class="gameover-button restartButton" id="restartGame">REINICIAR</button>
+                <button class="gameover-button exitButton" id="exitGame">SAIR</button>
+            </div>
+
+            <div class="ground"></div>
         </div>
     </div>
 </div>
