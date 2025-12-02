@@ -253,6 +253,8 @@ function damageMario(amount) {
 function endgame() {
     clearInterval(monsterSpawnTimeout)
     clearInterval(enemyShootInterval);
+
+    finalScoreEl.textContent = score;
     gameoverScreen.classList.remove('hidden');
 }
 
@@ -315,6 +317,7 @@ const enemyShootInterval = setInterval(() => {
 
 const restartButton = document.querySelector('.restartButton');
 const exitButton = document.querySelector('.exitButton');
+const finalScoreEl = document.getElementById('finalScore');
 
 
 restartButton.addEventListener('click', () => {

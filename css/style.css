@@ -195,7 +195,7 @@
 
 .gameover-options {
     position: absolute;
-    top: 180px;
+    margin-top: 5rem;
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -258,4 +258,15 @@
     to   { opacity: 0.6; transform: scale(1.05); }
 }
 
+
+.gameover-score {
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    font-family: "Press Start 2P", system-ui, sans-serif;
+    color: #ffffff;
+    text-shadow: 2px 2px 0 #000000;
+    font-size: 40px;
+    margin-top: 1rem;
+}
 
