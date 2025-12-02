@@ -15,7 +15,7 @@ body {
     overflow: hidden;
 }
 
-.menu-wrapper {
+.credits-wrapper {
     position: relative;
     width: 900px;
     height: 450px;
@@ -37,36 +37,34 @@ body {
 
 .title-container {
     position: absolute;
-    top: 40px;
+    top: 30px;
     width: 100%;
     text-align: center;
 }
 
-.game-title {
-    font-size: 32px;
+.credits-title {
+    font-size: 28px;
     color: #ffe600;
     text-shadow: 4px 4px 0 #000;
-    margin-bottom: 8px;
 }
 
-.game-subtitle {
-    font-size: 14px;
-    color: #fff;
-    text-shadow: 2px 2px 0 #000;
-}
-
-.game-subtitle-credit {
+.credits-content {
+    position: absolute;
+    top: 100px;
+    left: 80px;
     font-size: 12px;
-    margin-top: 1.5rem;
-    cursor: pointer;
-    color: #fff;
+    line-height: 1.8;
     text-shadow: 2px 2px 0 #000;
+}
+
+.credits-content span {
+    color: #ffe600;
 }
 
 .mario-preview {
     position: absolute;
     bottom: 60px;
-    left: 80px;
+    right: 100px;
 }
 
 .mario-preview img {
@@ -74,49 +72,33 @@ body {
     image-rendering: pixelated;
 }
 
-.menu-options {
+.credits-footer {
     position: absolute;
-    bottom: 90px;
-    right: 80px;
+    bottom: 20px;
+    width: 100%;
     display: flex;
-    flex-direction: column;
-    gap: 16px;
-    text-align: left;
+    justify-content: center;
 }
 
-.start-button {
+.back-button {
     padding: 12px 28px;
     border-radius: 10px;
     border: 3px solid #fff;
     background: #ff5200;
     color: #fff;
-    font-size: 16px;
+    font-size: 14px;
     cursor: pointer;
     text-shadow: 2px 2px 0 #000;
     box-shadow: 0 4px 0 #b73400;
-    animation: start-blink 1s infinite alternate;
+    animation: blink 1s infinite alternate;
+    margin-bottom: 5rem;
 }
 
-.start-button:active {
+.back-button:active {
     transform: translateY(2px);
     box-shadow: 0 2px 0 #b73400;
 }
 
-.menu-item {
-    font-size: 12px;
-    text-shadow: 1px 1px 0 #000;
-}
-
-.menu-footer {
-    position: absolute;
-    bottom: 10px;
-    width: 100%;
-    text-align: center;
-    font-size: 10px;
-    text-shadow: 1px 1px 0 #000;
-}
-
-/* Nuvens */
 .cloud {
     position: absolute;
     top: 40px;
@@ -141,7 +123,7 @@ body {
     to   { transform: translateX(1100px); }
 }
 
-@keyframes start-blink {
+@keyframes blink {
     from { opacity: 1; transform: scale(1); }
     to   { opacity: 0.6; transform: scale(1.05); }
 }

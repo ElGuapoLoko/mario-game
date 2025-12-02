@@ -1,11 +1,14 @@
 const startButton = document.getElementById('startGame');
+const CreditButton = document.getElementById('Credit');
 
-// Clique no botão
 startButton.addEventListener('click', () => {
-    window.location.href = './game.html'; // ✅ MUDE PARA O NOME DO SEU ARQUIVO DO JOGO
+    window.location.href = './game.html';
 });
 
-// Enter também inicia
+CreditButton.addEventListener('click', () => {
+    window.location.href = './about.html';
+});
+
 document.addEventListener('keydown', (e) => {
     if (e.key === 'Enter' || e.code === 'Space') {
         window.location.href = 'game.html';
